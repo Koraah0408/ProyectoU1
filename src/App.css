@@ -1,0 +1,6 @@
+import React from 'react';
+
+// Removing default Vite boilerplate
+export default function Boilerplate() {
+  return <div />
+}
