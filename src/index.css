@@ -1,11 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-dark-motive: #1e293b;
-  --color-dark-bg: #0f172a;
+  /* Primary brand - indigo/violet */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+
+  /* Dark backgrounds */
+  --color-dark-bg: #0d0f14;
+  --color-dark-surface: #13161e;
+  --color-dark-motive: #1a1e2a;
+  --color-dark-elevated: #222737;
+  --color-dark-border: #2a2f40;
+
+  /* Tag colors */
+  --color-tag-trabajo: #7c3aed;
+  --color-tag-personal: #059669;
+  --color-tag-estudio: #d97706;
+  --color-tag-salud: #dc2626;
+  --color-tag-otro: #6b7280;
+}
+
+/* ===== Base Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: #6366f1;
+  color: white;
+}
+
+/* ===== Focus Rings ===== */
+:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* ===== Animations ===== */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes xp-float {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(1.15);
+  }
+}
+
+@keyframes xp-fill {
+  from {
+    width: var(--xp-from, 0%);
+  }
+
+  to {
+    width: var(--xp-to, 0%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes level-up-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6);
+  }
+
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 16px rgba(99, 102, 241, 0);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(80px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== Utility Classes ===== */
+.animate-fade-in {
+  animation: fade-in 0.3s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.35s ease forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.35s ease forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.25s ease forwards;
+}
+
+.animate-xp-float {
+  animation: xp-float 1.8s ease-out forwards;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 6s linear infinite;
+}
+
+.animate-level-pulse {
+  animation: level-up-pulse 0.8s ease-in-out 3;
+}
+
+/* ===== Skeleton Shimmer ===== */
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #263047 50%, #1e293b 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ===== Glass card ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass {
+  background: rgba(26, 30, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ===== Modal Backdrop ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* ===== XP Bar ===== */
+.xp-bar-fill {
+  transition: width 0.8s cubic-bezier(0.34, 1.1, 0.64, 1);
+}
+
+/* ===== Tag pill colors ===== */
+.tag-trabajo {
+  background: #ede9fe;
+  color: #7c3aed;
+}
+
+.tag-personal {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.tag-estudio {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.tag-salud {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.tag-otro {
+  background: #f1f5f9;
+  color: #6b7280;
+}
+
+.dark .tag-trabajo {
+  background: rgba(124, 58, 237, 0.2);
+  color: #c4b5fd;
+}
+
+.dark .tag-personal {
+  background: rgba(5, 150, 105, 0.2);
+  color: #6ee7b7;
+}
+
+.dark .tag-estudio {
+  background: rgba(217, 119, 6, 0.2);
+  color: #fcd34d;
+}
+
+.dark .tag-salud {
+  background: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+}
+
+.dark .tag-otro {
+  background: rgba(107, 114, 128, 0.2);
+  color: #9ca3af;
+}
+
+/* ===== Priority borders ===== */
+.priority-low {
+  border-left: 3px solid #64748b;
+}
+
+.priority-medium {
+  border-left: 3px solid #6366f1;
+}
+
+.priority-high {
+  border-left: 3px solid #ef4444;
 }
